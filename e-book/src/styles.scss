@@ -1,1 +1,102 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@include mat.core();
+
+$dark-primary-text: rgba(black, 0.87);
+
+$light-primary-text: white;
+
+$mat-primary: (
+  50 : #e4edf6,
+  100 : #bcd3e8,
+  200 : #90b6d9,
+  300 : #6499c9,
+  400 : #4283be,
+  500 : #216db2,
+  600 : #1d65ab,
+  700 : #185aa2,
+  800 : #145099,
+  900 : #0b3e8a,
+  A100 : #b9d2ff,
+  A200 : #86b1ff,
+  A400 : #538fff,
+  A700 : #3a7fff,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$mat-accent: (
+  50 : #e1e5e8,
+  100 : #b4bdc6,
+  200 : #8292a1,
+  300 : #4f667b,
+  400 : #2a455e,
+  500 : #042442,
+  600 : #03203c,
+  700 : #031b33,
+  800 : #02162b,
+  900 : #010d1d,
+  A100 : #E2EEF8,
+  A200 : #8DB8E2,
+  A400 : #83B0DE,
+  A700 : #72A3D8,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$primary: mat.define-palette($mat-primary, 500);
+
+$accent: mat.define-palette($mat-accent, A200, A100, A400);
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($theme);
+
+.mat-elevation-z7 {
+  box-shadow: 0 4px 5px -2px #0003, 0 7px 10px 1px #00000024, 0 2px 16px 1px #0000001f !important;
+}
+
+.mat-elevation-z10 {
+  box-shadow: 0 6px 6px -3px #0003, 0 10px 14px 1px #00000024, 0 4px 18px 3px #0000001f !important;
+}
