@@ -1,0 +1,77 @@
+<div class="books-panel">
+
+  <h3>All Items</h3>
+
+  <mat-tab-group>
+
+    <mat-tab label="Beginners">
+
+      <mat-card *ngFor="let book of beginnerBooks" class="book-card mat-elevation-z10">
+
+        <mat-card-header>
+
+          <mat-card-title>{{book.description}}</mat-card-title>
+
+        </mat-card-header>
+
+        <img mat-card-image [src]="book.iconUrl">
+
+        <mat-card-content>
+          <p>{{book.longDescription}}</p>
+        </mat-card-content>
+
+        <mat-card-actions class="book-actions">
+
+          <button mat-button mat-raised-button color="primary" [routerLink]="['/books', book.id]">
+            VIEW ITEM
+          </button>
+
+          <button mat-button mat-raised-button color="accent"
+                  (click)="editBook(book)">
+            EDIT
+          </button>
+
+        </mat-card-actions>
+
+      </mat-card>
+
+    </mat-tab>
+
+    <mat-tab label="Advanced">
+
+      <mat-card *ngFor="let book of advancedBooks" class="book-card mat-elevation-z10">
+
+        <mat-card-header>
+
+          <mat-card-title>{{book.description}}</mat-card-title>
+
+        </mat-card-header>
+
+        <img mat-card-image [src]="book.iconUrl">
+
+        <mat-card-content>
+          <p>{{book.longDescription}}</p>
+        </mat-card-content>
+
+        <mat-card-actions class="book-actions">
+
+          <button mat-button class="mat-raised-button mat-primary" [routerLink]="['/books', book.id]">
+            VIEW ITEM
+          </button>
+
+          <button mat-button class="mat-raised-button mat-accent"
+                  (click)="editBook(book)">
+            EDIT
+          </button>
+
+        </mat-card-actions>
+
+      </mat-card>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+
+</div>
