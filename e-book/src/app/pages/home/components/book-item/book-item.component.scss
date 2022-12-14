@@ -1,0 +1,14 @@
+$img-height: 250px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  img {
+    height: $img-height;
+    width: 100%;
+    background-size: contain;
+    padding: 10px;
+  }
+}
