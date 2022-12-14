@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Book, sortCoursesBySeqNo } from "../../models/book";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { BooksService } from "../../core/services/books.service";
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.books$ = this.getData$.pipe(
+      takeUntil(this.unsubscribe$),
       switchMap(() => this.booksService.getBooks().pipe(map(books => books.sort(sortCoursesBySeqNo)))),
     );
 
@@ -49,14 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     dialogConfig.data = book;
 
-    const dialogRef = this.dialog.open(BookDialogComponent, dialogConfig);
-
-    dialogRef.afterClosed()
+    this.dialog.open(BookDialogComponent, dialogConfig).afterClosed()
       .pipe(
         filter(res => !!res),
         switchMap(changes => this.booksService.saveBook(book.id, changes))
-    ).subscribe((res: Partial<Book>) => {
-      this.getData$.next(true);
-    });
+    ).subscribe(() => this.getData$.next(true));
   }
 }

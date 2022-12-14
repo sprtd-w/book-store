@@ -1,18 +1,18 @@
 <mat-card-header>
-  <mat-card-title>{{book?.description}}</mat-card-title>
+  <mat-card-title>{{book.description}}</mat-card-title>
 </mat-card-header>
 
-<img mat-card-image [src]="book?.iconUrl">
+<img mat-card-image [src]="book.iconUrl" alt="Book cover image">
 
 <mat-card-content>
-  <p>{{book?.longDescription}}</p>
+  <p>{{book.longDescription}}</p>
 </mat-card-content>
 
 <mat-card-actions class="book-actions">
   <button mat-button
           mat-raised-button
           color="primary"
-          [routerLink]="['/books', book?.id]">
+          [routerLink]="['/books', book.id]">
     VIEW ITEM
   </button>
 
