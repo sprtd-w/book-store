@@ -1,8 +1,8 @@
 import { Component, Inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Book } from "../../models/book";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import * as moment from "moment";
+import { Book } from "../../../../models/book";
 
 @Component({
   selector: 'app-book-dialog',
@@ -11,20 +11,20 @@ import * as moment from "moment";
 })
 export class BookDialogComponent {
   form: FormGroup = new FormGroup<{}>({});
-  course: Book;
+  book: Book;
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<BookDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) course:Book) {
+    @Inject(MAT_DIALOG_DATA) book: Book) {
 
-    this.course = course;
+    this.book = book;
 
     this.form = fb.group({
-      description: [course.description, Validators.required],
-      category: [course.category, Validators.required],
+      description: [book.description, Validators.required],
+      category: [book.category, Validators.required],
       releasedAt: [moment(), Validators.required],
-      longDescription: [course.longDescription,Validators.required]
+      longDescription: [book.longDescription, Validators.required]
     });
   }
 
