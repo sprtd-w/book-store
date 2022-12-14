@@ -29,10 +29,24 @@ export class BookDialogComponent {
   }
 
   save() {
-    const changes = this.form.value;
+    const patch: {[key: string]: any } = this.getPatch();
+    this.dialogRef.close(patch);
   }
 
   close() {
     this.dialogRef.close();
+  }
+
+  private getPatch(): any {
+    const book = this.book as {[key: string]: any };
+    const patch: {[key: string]: any } = {};
+
+    for (const [ k, v ] of Object.entries(this.form.value)) {
+      if (book[k] !== v) {
+        patch[k] = v;
+      }
+    }
+
+    return patch;
   }
 }

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './pages/about/about.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
@@ -26,20 +25,19 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
-import { BookDialogComponent } from './components/book-dialog/book-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    HomeComponent,
     LoginComponent,
-    BookDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
@@ -54,11 +52,11 @@ import { BookDialogComponent } from './components/book-dialog/book-dialog.compon
     MatSortModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    AppRoutingModule,
     MatSelectModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    ReactiveFormsModule
+
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

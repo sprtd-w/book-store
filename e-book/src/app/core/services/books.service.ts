@@ -17,4 +17,8 @@ export class BooksService {
         shareReplay(),
       );
   }
+
+  saveBook(bookId: string, changes: Partial<Book>): Observable<Partial<Book>> {
+    return this.http.put<Partial<Book>>(`/api/books/${bookId}`, changes).pipe(shareReplay());
+  }
 }

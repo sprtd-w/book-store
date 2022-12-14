@@ -8,10 +8,10 @@ import { Book } from "../../../../models/book";
 })
 export class BookListComponent {
   @Input() books: Book[] | null;
-  @Output() editBookEvent: EventEmitter<Book> = new EventEmitter<Book>();
+  @Output() editBookClicked: EventEmitter<Book> = new EventEmitter<Book>();
 
-  editBook(book: Book): void {
-    this.editBookEvent.emit(book);
+  bookItemEditClicked(book: Book): void {
+    this.editBookClicked.emit(book);
   }
 
 }

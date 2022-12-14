@@ -4,11 +4,23 @@ $img-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 10px 5px;
 
   img {
     height: $img-height;
     width: 100%;
     background-size: contain;
     padding: 10px;
+  }
+}
+
+.book-actions {
+  display: flex;
+  justify-content: center;
+
+  button {
+    display: flex;
+    justify-content: center;
+    margin-right: 5px;
   }
 }
