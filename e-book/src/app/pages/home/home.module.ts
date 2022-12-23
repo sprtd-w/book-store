@@ -22,6 +22,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { SharedModule } from "../../shared/shared.module";
 
 
 
@@ -45,6 +46,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatSelectModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

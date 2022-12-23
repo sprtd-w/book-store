@@ -1,23 +1,24 @@
 <div class="books-panel">
 
-  <h3>All Items</h3>
+  <h3 class="home-container">All Items</h3>
 
-  <mat-tab-group>
+  <div class="books-container">
+    <mat-tab-group class="home-container">
+      <mat-tab label="Beginners">
+        <app-book-list
+          [books]="(beginnerBooks$ | async)"
+          (editBookClicked)="editBookHandler($event)"
+        ></app-book-list>
+      </mat-tab>
 
-    <mat-tab label="Beginners">
-      <app-book-list
-        [books]="(beginnerBooks$ | async)"
-        (editBookClicked)="editBookHandler($event)"
-      ></app-book-list>
-    </mat-tab>
+      <mat-tab label="Advanced">
+        <app-book-list
+          [books]="(advancedBooks$ | async)"
+          (editBookClicked)="editBookHandler($event)"
+        ></app-book-list>
+      </mat-tab>
 
-    <mat-tab label="Advanced">
-      <app-book-list
-        [books]="(advancedBooks$ | async)"
-        (editBookClicked)="editBookHandler($event)"
-      ></app-book-list>
-    </mat-tab>
-
-  </mat-tab-group>
+    </mat-tab-group>
+  </div>
 
 </div>
