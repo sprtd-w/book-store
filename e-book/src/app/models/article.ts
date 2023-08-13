@@ -5,5 +5,7 @@ export interface Article {
   filter?: string,
   sortOrder?: string,
   pageNumber?: string,
-  pageSize?: string
+  pageSize?: string,
+  duration?: string,
+  seqNo?: string,
 }
