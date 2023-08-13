@@ -1,0 +1,17 @@
+<app-book-item [book]="book"></app-book-item>
+
+<mat-card-actions class="book-actions">
+  <button mat-button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/books', book.id]">
+    VIEW ITEM
+  </button>
+
+  <button mat-button
+          mat-raised-button
+          color="accent"
+          (click)="editBook(book)">
+    EDIT
+  </button>
+</mat-card-actions>
