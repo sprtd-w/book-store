@@ -1,11 +1,11 @@
-import { BOOKS, LESSONS, USERS } from "./db";
+import { BOOKS, ARTICLES, USERS } from "./db";
 
-export function findBookById(bookId: number) {
-  return Object.values(BOOKS as Array<{ id: number }>).find(book => book.id === bookId);
+export function findBookById(id: number) {
+  return Object.values(BOOKS as Array<{ id: number }>).find(book => book.id === id);
 }
 
 export function findArticlesByBookId(bookId: number) {
-  return Object.values(LESSONS).filter(item => item.bookId == bookId);
+  return Object.values(ARTICLES).filter(item => item.bookId == bookId);
 }
 
 export function auth(email: string, password: string) {
