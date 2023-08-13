@@ -1,0 +1,33 @@
+<div class="book-view-container">
+  <div class="book-info-section">
+    <div class="book-info">
+      <ng-container *ngIf="book$ | async as book">
+        <app-book-item [book]="book"></app-book-item>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="search-articles-section">
+
+    <ng-container *ngIf="articles$ | async as articles">
+      <div class="article-container" *ngFor="let article of articles">
+
+        <div class="article-row">
+
+          <div class="article-item">
+            {{article?.seqNo}}.
+          </div>
+          <div class="article-item">
+            description: {{article?.description}},
+          </div>
+          <div class="article-item">
+            duration: {{article?.duration}}
+          </div>
+
+        </div>
+
+      </div>
+    </ng-container>
+
+  </div>
+</div>

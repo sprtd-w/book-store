@@ -3,8 +3,17 @@ import { Book, sortCoursesBySeqNo } from "../../models/book";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { BooksService } from "../../core/services/books.service";
 import { LevelEnum } from "../../enums/level.enum";
-import { BehaviorSubject, filter, map, Observable, Subject, switchMap, takeUntil } from "rxjs";
-import { BookDialogComponent } from "./components/book-dialog/book-dialog.component";
+import {
+  BehaviorSubject,
+  filter,
+  map,
+  Observable,
+  Subject,
+  switchMap,
+  takeUntil,
+} from "rxjs";
+import { LoadingService } from "../../shared/services/loading.service";
+import { BookEditDialogComponent } from "./components/book-edit-dialog/book-edit-dialog.component";
 
 @Component({
   selector: 'app-home',
@@ -18,20 +27,30 @@ export class HomeComponent implements OnInit, OnDestroy {
   private getData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private unsubscribe$: Subject<any> = new Subject<any>();
 
-  constructor(private booksService: BooksService, private dialog: MatDialog) {
+  constructor(
+    private loadingService: LoadingService,
+    private booksService: BooksService,
+    private dialog: MatDialog
+  ) {
   }
 
   ngOnInit(): void {
     this.books$ = this.getData$.pipe(
+      switchMap(() =>
+        this.booksService.getBooks()
+          .pipe(
+            map(books => books.sort(sortCoursesBySeqNo)),
+            switchMap(sortedBooks => this.loadingService.showLoaderUntilComplete(sortedBooks)),
+          )
+      ),
       takeUntil(this.unsubscribe$),
-      switchMap(() => this.booksService.getBooks().pipe(map(books => books.sort(sortCoursesBySeqNo)))),
     );
 
     this.beginnerBooks$ = this.books$.pipe(
       map(books => books.filter(book => book.category == LevelEnum.BEGINNER))
     );
 
-    this.advancedBooks$ = this.books$.pipe(
+    this.advancedBooks$ =  this.books$.pipe(
       map(books => books.filter(book => book.category == LevelEnum.ADVANCED))
     );
   }
@@ -50,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     dialogConfig.data = book;
 
-    this.dialog.open(BookDialogComponent, dialogConfig).afterClosed()
+    this.dialog.open(BookEditDialogComponent, dialogConfig).afterClosed()
       .pipe(
         filter(res => !!res),
         switchMap(changes => this.booksService.saveBook(book.id, changes))

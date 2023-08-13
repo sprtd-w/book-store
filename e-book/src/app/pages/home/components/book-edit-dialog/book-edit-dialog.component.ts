@@ -1,21 +1,23 @@
-import { Component, Inject } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Inject, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import * as moment from "moment";
 import { Book } from "../../../../models/book";
 
 @Component({
-  selector: 'app-book-dialog',
-  templateUrl: './book-dialog.component.html',
-  styleUrls: ['./book-dialog.component.scss']
+  selector: 'app-book-edit-dialog',
+  templateUrl: './book-edit-dialog.component.html',
+  styleUrls: ['./book-edit-dialog.component.scss']
 })
-export class BookDialogComponent {
+export class BookEditDialogComponent implements AfterViewInit {
   form: FormGroup = new FormGroup<{}>({});
   book: Book;
 
+  @ViewChild('saveButton') saveButton: ElementRef;
+
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<BookDialogComponent>,
+    private dialogRef: MatDialogRef<BookEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) book: Book) {
 
     this.book = book;
@@ -26,6 +28,14 @@ export class BookDialogComponent {
       releasedAt: [moment(), Validators.required],
       longDescription: [book.longDescription, Validators.required]
     });
+  }
+
+  ngAfterViewInit(): void {
+    // fromEvent(this.saveButton.nativeElement, 'click')
+    //   .pipe(
+    //     exhaustMap(() => this.form.value),
+    //   ).subscribe(null);
+
   }
 
   save() {

@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.book-view-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+
+  .book-info-section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+
+    .book-info {
+      width: 50%;
+      min-width: 350px;
+      padding: 10px;
+    }
+  }
+
+  .search-articles-section {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+}
+
+.search-articles-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  overflow-y: auto;
+
+  .article-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+
+    .article-row {
+      display: flex;
+      width: 100%;
+      padding: 10px 0;
+
+      .article-item {
+        padding: 0 5px;
+      }
+    }
+  }
+
+}
