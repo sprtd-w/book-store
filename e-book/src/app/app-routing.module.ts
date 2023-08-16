@@ -14,6 +14,10 @@ const routes: Routes = [
     component: AboutComponent
   },
   {
+    path: 'search',
+    loadChildren: () => import('./pages/search/search.module').then(m => m.SearchModule)
+  },
+  {
     path: 'login',
     component: LoginComponent
   },

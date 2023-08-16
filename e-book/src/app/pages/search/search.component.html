@@ -1,0 +1,15 @@
+<div class="search-container">
+  <div class="search-header w-100">
+    <form class="w-60">
+      <mat-form-field class="w-100">
+        <mat-label>Search</mat-label>
+        <input matInput #searchInput maxlength="256" placeholder="Type search query...">
+        <mat-hint align="start">{{searchInput.value.length}} / 256</mat-hint>
+      </mat-form-field>
+    </form>
+
+  </div>
+  <div class="search-body">
+    results
+  </div>
+</div>
